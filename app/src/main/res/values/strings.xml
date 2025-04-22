@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Kotlin Coding Exercise</string>
+    <string name="list_id_card_title">List Id</string>
+    <string name="item_activity_title">List Id %1$d</string>
+    <string name="item_id">Id: %1$d</string>
 </resources>
