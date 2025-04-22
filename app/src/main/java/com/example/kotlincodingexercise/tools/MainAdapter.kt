@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincodingexercise.R
 import com.example.kotlincodingexercise.activities.ItemsActivity
 import com.example.kotlincodingexercise.datamodels.Item
+import com.example.kotlincodingexercise.datamodels.ItemGroup
 
 class MainAdapter(private val context: Context, private val dataManager: DataManager)
         : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
@@ -28,8 +29,8 @@ class MainAdapter(private val context: Context, private val dataManager: DataMan
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ItemsActivity::class.java)
-            intent.putExtra("ListId", listId)
-            intent.putExtra("dataManager", dataManager)
+            intent.putExtra("listId", listId)
+            intent.putExtra("items", ItemGroup(dataManager.data[listId] ?: ArrayList<Item>()))
             context.startActivity(intent)
         }
     }

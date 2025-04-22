@@ -9,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlincodingexercise.datamodels.Item
 import com.example.kotlincodingexercise.tools.DataManager
 import com.example.kotlincodingexercise.tools.MainAdapter
 
