@@ -46,7 +46,7 @@ class DataManager(val context: Context): Serializable {
         jsonData.let {
             for (i in 0 until it.size()) {
                 val item = JSONObject(it.get(i).toString())
-                if (item.getString("name") != null && item.getString("name") != "") {
+                if (item.getString("name") != "null" && item.getString("name") != "") {
                     val id = item.getInt("id")
                     val listId = item.getInt("listId")
                     val name = item.getString("name")
