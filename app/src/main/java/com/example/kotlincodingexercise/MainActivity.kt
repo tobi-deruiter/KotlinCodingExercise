@@ -12,6 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincodingexercise.tools.DataManager
 import com.example.kotlincodingexercise.tools.MainAdapter
 
+/**
+ * MainActivity
+ *
+ * The main activity to show the opening screen of the app. This will call on the DataManager
+ * class to retrieve the json data from Fetch, then display all ListId groups, which can be
+ * clicked to show all items with that ListId.
+ */
 class MainActivity : AppCompatActivity() {
     val dataManager = DataManager(this@MainActivity)
 
@@ -47,6 +54,4 @@ class MainActivity : AppCompatActivity() {
         recyclerview.layoutManager = GridLayoutManager(this, 2)
         recyclerview.adapter = adapter
     }
-
-
 }

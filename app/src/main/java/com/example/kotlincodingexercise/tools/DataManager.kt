@@ -13,10 +13,23 @@ import retrofit.Response
 import retrofit.Retrofit
 import java.io.Serializable
 
+/**
+ * DataManager
+ *
+ * This class is used to retrieve, store, and manage the json data from the Retrofit API call.
+ */
 class DataManager(val context: Context): Serializable {
-    var jsonData: JsonArray = JsonArray()
+    // class variables
+    private var jsonData: JsonArray = JsonArray()
     var data: MutableMap<Int, ArrayList<Item>> = mutableMapOf()
 
+    /**
+     * getData
+     *
+     * This function makes the API call through Retrofit to get the json data from Fetch.
+     * It takes a callback function as a parameter so once the data is retrieved it can be added
+     * to the main adapter and displayed on the app.
+     */
     fun getData(callback: () -> Unit) {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://fetch-hiring.s3.amazonaws.com")
@@ -30,7 +43,7 @@ class DataManager(val context: Context): Serializable {
             override fun onResponse(response: Response<JsonArray>?, retrofit: Retrofit?) {
                 if (response?.isSuccess == true) {
                     jsonData = response.body()
-                    convertToSortedItems()
+                    convertJsonDataToSortedItems()
                     callback()
                 }
             }
@@ -42,7 +55,13 @@ class DataManager(val context: Context): Serializable {
         })
     }
 
-    private fun convertToSortedItems() : MutableMap<Int, ArrayList<Item>> {
+    /**
+     * convertToSortedItems
+     *
+     * This function takes the jsonData from the API call and sorts it as described
+     * (by listId then by name) into a Map for easy use.
+     */
+    private fun convertJsonDataToSortedItems() {
         jsonData.let {
             for (i in 0 until it.size()) {
                 val item = JSONObject(it.get(i).toString())
@@ -63,7 +82,5 @@ class DataManager(val context: Context): Serializable {
         for (key in data.keys) {
             data[key]?.sortBy { it.name }
         }
-
-        return data
     }
 }

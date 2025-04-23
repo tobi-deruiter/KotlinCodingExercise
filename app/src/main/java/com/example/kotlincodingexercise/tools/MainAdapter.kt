@@ -12,6 +12,12 @@ import com.example.kotlincodingexercise.activities.ItemsActivity
 import com.example.kotlincodingexercise.datamodels.Item
 import com.example.kotlincodingexercise.datamodels.ItemGroup
 
+/**
+ * MainAdapter
+ *
+ * Adapter class to display all listId groups and add OnClickListeners that open the ItemsActivity
+ * for the respective listId clicked.
+ */
 class MainAdapter(private val context: Context, private val dataManager: DataManager)
         : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

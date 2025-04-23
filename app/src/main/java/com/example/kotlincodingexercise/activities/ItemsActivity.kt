@@ -8,19 +8,28 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlincodingexercise.MainActivity
 import com.example.kotlincodingexercise.R
 import com.example.kotlincodingexercise.datamodels.Item
 import com.example.kotlincodingexercise.datamodels.ItemGroup
-import com.example.kotlincodingexercise.tools.DataManager
 import com.example.kotlincodingexercise.tools.ItemsAdapter
-import com.example.kotlincodingexercise.tools.MainAdapter
 import java.util.ArrayList
 
+/**
+ * ItemsActivity
+ *
+ * This class is an activity to show all items with the given listId. Both the group of items and
+ * listId are passed through Intent.
+ * After getting the listId and itemGroup through Intent, the activity page title is set and
+ * an adapter is made and added to the RecyclerView on the activity_items layout.
+ */
 class ItemsActivity : AppCompatActivity() {
+    /**
+     * onCreate
+     *
+     * Create the activity, get the listId and itemGroup from Intent, and display
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -46,11 +55,15 @@ class ItemsActivity : AppCompatActivity() {
         var itemGroup = intent.extras?.getSerializable("items", ItemGroup::class.java)
 
         findViewById<TextView>(R.id.listId_title).text = getString(R.string.item_activity_title, listId)
-
-
         addAdapter(itemGroup?.items ?: ArrayList<Item>())
     }
 
+    /**
+     * addAdapter
+     *
+     * This function will take the list items given to create an ItemsAdapter and add it to the
+     * recyclerview.
+     */
     private fun addAdapter(items: ArrayList<Item>) {
         findViewById<ProgressBar>(R.id.listIdProgressBar).visibility = View.GONE
 
